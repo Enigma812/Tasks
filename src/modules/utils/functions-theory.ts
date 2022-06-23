@@ -39,13 +39,13 @@ function arraySum(arr: number[]): number {
 }
 
 function getOdds(array: number[]): number[] {
-  return array.filter((value) =>
+  return array.filter(
+    (value) => value % 2 === 0
     // if(value % 2 === 0) {
     //     return false;
     // } else {
     //     return true;
     // }
-    value % 2 === 0
   );
   return array.filter((value) => value % 2 === 1);
 }

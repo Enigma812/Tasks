@@ -5,7 +5,9 @@ import { factorial } from '../factorial.function';
 
 @Component({
   templateUrl: './task1-page.component.html',
-  styleUrls: ['./task1-page.component.scss']
+  styleUrls: [
+    './task1-page.component.scss'
+  ]
 })
 export class Task1PageComponent {
   public result1 = '';

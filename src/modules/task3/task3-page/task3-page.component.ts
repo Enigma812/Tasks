@@ -6,7 +6,9 @@ import { c } from '../c.function';
 @Component({
   selector: 'app-task3',
   templateUrl: './task3-page.component.html',
-  styleUrls: ['./task3-page.component.scss']
+  styleUrls: [
+    './task3-page.component.scss'
+  ]
 })
 export class Task3PageComponent {
   public resultA = '';

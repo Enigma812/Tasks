@@ -8,9 +8,11 @@ describe('Task26Component', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ Task26PageComponent ]
+      declarations: [
+        Task26PageComponent
+      ]
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(Task26PageComponent);
     component = fixture.componentInstance;

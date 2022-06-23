@@ -3,7 +3,9 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-task10',
   templateUrl: './task10-page.component.html',
-  styleUrls: ['./task10-page.component.scss']
+  styleUrls: [
+    './task10-page.component.scss'
+  ]
 })
 export class Task10PageComponent {
   public matrix: number[][] = [];

@@ -5,7 +5,9 @@ import { FibService } from '../fib.service';
 @Component({
   selector: 'app-task4',
   templateUrl: './task4-page.component.html',
-  styleUrls: ['./task4-page.component.scss']
+  styleUrls: [
+    './task4-page.component.scss'
+  ]
 })
 export class Task4PageComponent {
   public result = '';

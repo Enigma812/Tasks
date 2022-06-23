@@ -6,7 +6,9 @@ import { sqr } from '../sqr.function';
 @Component({
   selector: 'app-task6',
   templateUrl: './task6-page.component.html',
-  styleUrls: ['./task6-page.component.scss']
+  styleUrls: [
+    './task6-page.component.scss'
+  ]
 })
 export class Task6PageComponent {
   public sqr = '';

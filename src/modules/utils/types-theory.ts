@@ -22,7 +22,10 @@ const o: Order = 37;
 interface Id { id: number }
 interface Name { name: string }
 type IdName = Id & Name;           // объединение типов (и то и другое)
-const objIdName: IdName = { id: 42, name: 'John' };
+const objIdName: IdName = {
+  id: 42,
+  name: 'John'
+};
 
 
 //Литеральные типы   не общие примитивы (string, number, boolean), а конкретные значения
@@ -42,9 +45,15 @@ let strings: Arr<string>; // strings: string[]
 //генерик объектов
 
 interface GenIdName<TId, TName> { id: TId; name: TName }
-const genIdName: GenIdName<number, string> = { id: 42, name: 'John' };
+const genIdName: GenIdName<number, string> = {
+  id: 42,
+  name: 'John'
+};
 
-const genIdName2: GenIdName<string, 'John' | 'Sarah'> = { id: 'dsfsd', name: 'John' };
+const genIdName2: GenIdName<string, 'John' | 'Sarah'> = {
+  id: 'dsfsd',
+  name: 'John'
+};
 
 // генерик функций
 

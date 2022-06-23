@@ -3,7 +3,9 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-task26',
   templateUrl: './task26-page.component.html',
-  styleUrls: ['./task26-page.component.scss']
+  styleUrls: [
+    './task26-page.component.scss'
+  ]
 })
 export class Task26PageComponent {
   public result = 0;
