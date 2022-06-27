@@ -1,0 +1,29 @@
+<section class="task1">
+    <div class="title">Задача 6:
+        <p class="title__task">Создать массив из ста элементов, заполнив его случайными числами. Отсортировать массив.
+        </p>
+    </div>
+
+    <div class="results">
+        <div>
+            <div></div>
+            <div class="results__table">
+                <table>
+                    <tr *ngFor="let item of inputArray">
+                        <td>{{ item }}</td>
+                    </tr>
+                </table>
+                <table>
+                    <tr *ngFor="let item of sortArray">
+                        <td>{{ item }}</td>
+                    </tr>
+                </table>
+                <table>
+                    <tr *ngFor="let item of reverseArray">
+                        <td>{{ item }}</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
