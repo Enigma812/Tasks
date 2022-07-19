@@ -1,0 +1,15 @@
+<section>
+    <ul>
+        <li *ngFor="let item of items$ | async">
+            {{ item }}
+        </li>
+    </ul>
+    <div>
+        <button
+            *ngFor="let button of buttons$ | async"
+            (click)="changePage(button)"
+        >
+            {{ button }}
+        </button>
+    </div>
+</section>

@@ -38,6 +38,10 @@ const routes: Routes = [
   {
     path: 'task12',
     loadChildren: () => import('../modules/task12/task12.module').then((m) => m.Task12Module)
+  },
+  {
+    path: 'paging',
+    loadChildren: () => import('../modules/paging/paging.module').then(m => m.PagingModule)
   }
 ];
 
