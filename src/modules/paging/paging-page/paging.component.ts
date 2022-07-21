@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { map, Observable } from 'rxjs';
-import { PagingService } from '../paging.service';
+import { Page, PagingService } from '../paging.service';
 
 @Component({
   selector: 'app-paging',
@@ -11,16 +11,17 @@ export class PagingPageComponent {
 
   public items$: Observable<string[]>;
   public buttons$: Observable<number[]>;
-  public active: boolean = false;
+  public page$: Observable<Page>;
   public total$: Observable<number>;
-  public act$: Observable<number>
+  public start$: Observable<number>;
+  public finish$: Observable<number>;
 
   constructor(
     private readonly _pagingService: PagingService
   ) {
     this.items$ = this._pagingService.state$.pipe(
       map((state) => state.items)
-    )
+    );
 
     this.buttons$ = this._pagingService.state$.pipe(
       map((state) => {
@@ -31,28 +32,29 @@ export class PagingPageComponent {
         }
         return arrButtons;
       })
-    )
+    );
 
     this.total$ = this._pagingService.state$.pipe(
       map((state) => state.total)
-    )
+    );
 
-    this.act$ = this._pagingService.state$.pipe(
-      map((state) => state.pageNumber)
-    )
+    this.page$ = this._pagingService.state$.pipe(
+      map((state) => ({ 
+        pageNumber: state.pageNumber, 
+        pageSize: state.pageSize 
+      }))
+    );
+
+    this.start$ = this._pagingService.state$.pipe(
+      map((state) => state.pageSize * (state.pageNumber - 1) + 1)
+    );
+
+    this.finish$ = this._pagingService.state$.pipe(
+      map((state) => state.pageSize * state.pageNumber)
+    );
   }
 
-  public changePage(pageNumber: number): void {
-    this._pagingService.changePage(pageNumber);
+  public changePage(page: Page): void {
+    this._pagingService.changePage(page);
   }
-
-  // public activeButton(page: Observable<number>): boolean {
-  //     if(page = this.act$) {}
-  //     return this.active = true;
-  //   }
-  
-
-    public activeButton(): void {
-      this.active = true;
-    }
 }
