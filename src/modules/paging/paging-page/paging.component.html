@@ -1,13 +1,23 @@
 <section>
     <ul>
+        <div >
+            страница № {{ act$ | async }}
+         </div>
         <li *ngFor="let item of items$ | async">
             {{ item }}
         </li>
+        <div >
+           строк из {{ total$ | async }}
+        </div>
     </ul>
+
+    
+
     <div>
         <button
-            *ngFor="let button of buttons$ | async"
-            (click)="changePage(button)"
+        [ngClass]="{activeButton: active}"
+        *ngFor="let button of buttons$ | async"
+        (click)="changePage(button); activeButton()"
         >
             {{ button }}
         </button>
