@@ -16,9 +16,13 @@ export class PagingPageComponent {
   public start$: Observable<number>;
   public finish$: Observable<number>;
 
+  private readonly _pagingService: PagingService
+
   constructor(
-    private readonly _pagingService: PagingService
+    // private readonly _pagingService: PagingService
+    pagingService: PagingService
   ) {
+    this._pagingService = pagingService;
     this.items$ = this._pagingService.state$.pipe(
       map((state) => state.items)
     );

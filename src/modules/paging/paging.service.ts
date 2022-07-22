@@ -24,31 +24,31 @@ export class PagingService {
   public state$: Observable<PagingState<string>>;
 
   private _stateSubject: Subject<PagingState<string>>;
-  private state: PagingState<string>;
+  private _state: PagingState<string>;
 
   constructor() {
-    this.state = {
+    this._state = {
       pageNumber: 1,
       pageSize: 7,
       total: 0,
       items: []
     };
-    this._stateSubject = new BehaviorSubject<PagingState<string>>(this.state);
+    this._stateSubject = new BehaviorSubject<PagingState<string>>(this._state);
     this.state$ = this._stateSubject.asObservable();
-    this.changePage(this.state);
+    this.changePage(this._state);
    }
 
    public changePage(page: Page): void {
     const response = this.getPage(page);
-    this.state = {
-      ...this.state,
+    this._state = {
+      ...this._state,
       // ...page если много полей и все они нужны.
       pageNumber: page.pageNumber,
       pageSize: page.pageSize,
       total: response.total,
       items: response.items
     }
-    this._stateSubject.next(this.state);
+    this._stateSubject.next(this._state);
    }
 
    private getPage({ pageNumber, pageSize }: Page): PageState<string> {
