@@ -42,6 +42,10 @@ const routes: Routes = [
   {
     path: 'paging',
     loadChildren: () => import('../modules/paging/paging.module').then(m => m.PagingModule)
+  },
+  {
+    path: 'search',
+    loadChildren: () => import('../modules/search/search.module').then(m => m.SearchModule)
   }
 ];
 
