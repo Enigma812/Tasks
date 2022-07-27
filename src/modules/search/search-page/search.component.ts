@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { PageSearchState } from '../search.service';
 
 @Component({
   selector: 'app-search',
@@ -7,5 +8,9 @@ import { Component } from '@angular/core';
 })
 export class SearchPageComponent {
 
-  constructor() {}
+  public test: number;
+
+  constructor() {
+    this.test = 5
+  }
 }

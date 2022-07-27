@@ -1,6 +1,8 @@
 <section>
     <button
+        class="button"
         *ngFor="let button of buttons"
+        [ngClass]="{ activeButton: pageNumber === button }"
         (click)="click(button)"
     >{{ button }}</button>
 </section>
