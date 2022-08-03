@@ -1,12 +1,15 @@
 <section>
     <input>
-    <div></div>
-    <ul>
-        <li>{{test}}</li>
-    </ul>
+    <app-list></app-list>
     <app-paging
-        [pageNumber]="2"
-        [pageSize]="5"
-        [total]="50"
+        *ngIf="(pageState$ | async) as page"
+        [pageNumber]="page.pageNumber"
+        [pageSize]="page.pageSize"
+        [total]="page.total"
     ></app-paging>
+    <ul>
+        <li
+        *ngFor="let item of items$ | async"
+        >{{ item }}</li>
+    </ul>
 </section>
