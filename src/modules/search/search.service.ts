@@ -1,6 +1,11 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
 
+export interface PageState {
+  pageSize: number;
+  pageNumber: number;
+  total: number;
+}
 
 export interface PageSearchState<NewString> {
   pageSize: number;
@@ -14,20 +19,40 @@ export interface PageSearchState<NewString> {
 })
 export class SearchService{
 
-  public state$: Observable<PageSearchState<number>>;
-  public _state: PageSearchState<number>
-
-  private _stateSubject: Subject<PageSearchState<number>>;
+  public state$: Observable<PageSearchState<string>>;
+  
+  private _stateSubject: Subject<PageSearchState<string>>;
+  private _state: PageSearchState<string>
 
   constructor() {
     this._state = {
-      pageNumber: 2,
+      pageNumber: 7,
       pageSize: 5,
       total: 50,
       items: [],
     };
-    this._stateSubject = new BehaviorSubject<PageSearchState<number>>(this._state);
+    this._stateSubject = new BehaviorSubject<PageSearchState<string>>(this._state);
     this.state$ = this._stateSubject.asObservable();
+    this._state = {
+      ...this._state,
+      items: this.getPage(this._state)
+    };
+    this._stateSubject.next(this._state);
 
+
+
+  }
+
+  public getPage({ pageNumber, pageSize }: PageSearchState<string>): string[] {
+  // public getPage(state: PageSearchState<string>): PageStateItems<string> {  классическая запись верхней строчки, без деструктуризации параметров.
+  //   const pageNumber = state.pageNumber;
+  //   const pageSize = state.pageSize;
+    const items: string[] = [];
+    const firstItemOnPage = (pageNumber - 1) * pageSize;
+    for(let i = 1; i <= pageSize; i++) {
+      const item = 'Строка ' + (firstItemOnPage + i);
+      items.push(item);
+    }
+    return items
   }
 }
