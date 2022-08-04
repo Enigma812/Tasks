@@ -7,10 +7,6 @@ export interface PageState {
   total: number;
 }
 
-export interface PageStateItems<TItem> {
-  items: TItem[];
-}
-
 export interface PageSearchState<NewString> {
   pageSize: number;
   pageNumber: number;
@@ -30,24 +26,33 @@ export class SearchService{
 
   constructor() {
     this._state = {
-      pageNumber: 3,
+      pageNumber: 7,
       pageSize: 5,
       total: 50,
       items: [],
     };
     this._stateSubject = new BehaviorSubject<PageSearchState<string>>(this._state);
     this.state$ = this._stateSubject.asObservable();
+    this._state = {
+      ...this._state,
+      items: this.getPage(this._state)
+    };
+    this._stateSubject.next(this._state);
+
+
 
   }
 
-  public getPage({pageNumber, pageSize}: PageSearchState<string>): PageStateItems<string> {
+  public getPage({ pageNumber, pageSize }: PageSearchState<string>): string[] {
+  // public getPage(state: PageSearchState<string>): PageStateItems<string> {  классическая запись верхней строчки, без деструктуризации параметров.
+  //   const pageNumber = state.pageNumber;
+  //   const pageSize = state.pageSize;
     const items: string[] = [];
+    const firstItemOnPage = (pageNumber - 1) * pageSize;
     for(let i = 1; i <= pageSize; i++) {
-      const item = 'Строка' + (pageSize * (pageNumber - 1) + i);
+      const item = 'Строка ' + (firstItemOnPage + i);
       items.push(item);
     }
-    return {
-      items: items
-    }
+    return items
   }
 }

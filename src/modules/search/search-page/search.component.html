@@ -7,9 +7,9 @@
         [pageSize]="page.pageSize"
         [total]="page.total"
     ></app-paging>
-    <ul>
+    <ul *ngIf="(items$ | async) as items">
         <li
-        *ngFor="let item of items$ | async"
+          *ngFor="let item of items"
         >{{ item }}</li>
     </ul>
 </section>
