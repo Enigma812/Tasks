@@ -5,6 +5,7 @@ import { SearchRoutingModule } from './search-routing.module';
 import { SearchPageComponent } from './search-page/search.component';
 import { PagingComponent } from './paging/paging.component';
 import { ListComponent } from './list/list.component';
+import { FindComponent } from './find/find.component';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { ListComponent } from './list/list.component';
   declarations: [
     SearchPageComponent,
     PagingComponent,
-    ListComponent
+    ListComponent,
+    FindComponent
   ]
 })
 export class SearchModule { }

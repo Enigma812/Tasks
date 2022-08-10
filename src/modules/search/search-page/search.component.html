@@ -1,5 +1,5 @@
 <section>
-    <input>
+    <app-find></app-find>
     <app-list></app-list>
     <app-paging
         *ngIf="(pageState$ | async) as page"
@@ -7,9 +7,4 @@
         [pageSize]="page.pageSize"
         [total]="page.total"
     ></app-paging>
-    <ul *ngIf="(items$ | async) as items">
-        <li
-          *ngFor="let item of items"
-        >{{ item }}</li>
-    </ul>
 </section>

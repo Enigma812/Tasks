@@ -1,3 +1,7 @@
-<ul>
-    <li></li>
-</ul>
+<section>
+    <ul *ngIf="(items$ | async) as items">
+        <li
+          *ngFor="let item of items"
+        >{{ item }}</li>
+    </ul>
+</section>
