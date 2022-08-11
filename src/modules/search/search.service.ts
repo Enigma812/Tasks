@@ -38,9 +38,6 @@ export class SearchService{
       items: this.getPage(this._state)
     };
     this._stateSubject.next(this._state);
-
-
-
   }
 
   public getPage({ pageNumber, pageSize }: PageSearchState<string>): string[] {

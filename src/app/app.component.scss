@@ -1,13 +1,22 @@
-h1 {
-    height: 60px;
+.toolbar {
     display: flex;
-    justify-content: center;
     align-items: center;
-    margin: 0;
-    font-size: 40px;
-    text-transform: uppercase;
-    color: white;
+    gap: 500px;
     background-color: rgb(189, 106, 23);
+
+    &__home {
+        margin-left: 30px;
+    }
+    
+    &__header {
+        height: 60px;
+        display: flex;
+        align-items: center;
+        margin: 0;
+        font-size: 40px;
+        text-transform: uppercase;
+        color: white;   
+    }
 }
 
 .tasks {
@@ -60,4 +69,3 @@ h1 {
         background-color: blanchedalmond;
     }
 }
-

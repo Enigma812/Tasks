@@ -11,7 +11,6 @@ import { SearchService } from '../search.service';
 export class SearchPageComponent {
 
   public pageState$: Observable<PageState>;
-  public items$: Observable<string[]>;
 
   private readonly _searchStore: SearchService;
 
@@ -24,9 +23,5 @@ export class SearchPageComponent {
         total: state.total
       }))
     );
-      
-    this.items$ = this._searchStore.state$.pipe(
-      map((state) => state.items)
-    ); 
   }
 }
