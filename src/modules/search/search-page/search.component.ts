@@ -14,8 +14,8 @@ export class SearchPageComponent {
 
   private readonly _searchStore: SearchService;
 
-  constructor(searchPage: SearchService) {
-    this._searchStore = searchPage;
+  constructor(searchService: SearchService) {
+    this._searchStore = searchService;
     this.pageState$ = this._searchStore.state$.pipe(
       map((state) => ({
         pageNumber: state.pageNumber,
@@ -23,5 +23,9 @@ export class SearchPageComponent {
         total: state.total
       }))
     );
+  }
+
+  public pageChange(pageState: PageState): void {
+    this._searchStore.changePage(pageState);
   }
 }

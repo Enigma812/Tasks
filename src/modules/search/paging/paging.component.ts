@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
+import { PageState } from '../search.service';
 
 @Component({
   selector: 'app-paging',
@@ -15,8 +16,8 @@ export class PagingComponent implements OnInit, OnChanges {
   @Input()
   public total: number;
 
-  @Output() 
-  public pageChanged: EventEmitter<number>;  // output всегда должен иметь тип EventEmitter
+  @Output()
+  public pageChanged: EventEmitter<PageState>;  // output всегда должен иметь тип EventEmitter
 
   public buttons: number[];
 
@@ -24,7 +25,7 @@ export class PagingComponent implements OnInit, OnChanges {
     this.pageNumber = 0;
     this.pageSize = 0;
     this.total = 0;
-    this.pageChanged = new EventEmitter<number>();
+    this.pageChanged = new EventEmitter<PageState>();
     this.buttons = [];
   }
 
@@ -37,7 +38,11 @@ export class PagingComponent implements OnInit, OnChanges {
   }
 
   public click(buttonNumber: number): void {
-    this.pageChanged.emit(buttonNumber);
+    this.pageChanged.emit({
+      pageNumber: buttonNumber,
+      pageSize: this.pageSize,
+      total: this.total
+    });
   }
 
   private generateButtons(): void {

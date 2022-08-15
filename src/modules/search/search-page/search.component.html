@@ -6,5 +6,6 @@
         [pageNumber]="page.pageNumber"
         [pageSize]="page.pageSize"
         [total]="page.total"
+        (pageChanged)="pageChange($event)"
     ></app-paging>
 </section>

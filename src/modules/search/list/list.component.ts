@@ -13,8 +13,8 @@ export class ListComponent {
 
   private readonly _searchStore: SearchService;
 
-  constructor(searchPage: SearchService) { 
-    this._searchStore = searchPage;
+  constructor(searchService: SearchService) { 
+    this._searchStore = searchService;
     this.items$ = this._searchStore.state$.pipe(
       map((state) => state.items)
     ); 

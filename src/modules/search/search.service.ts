@@ -35,12 +35,23 @@ export class SearchService{
     this.state$ = this._stateSubject.asObservable();
     this._state = {
       ...this._state,
-      items: this.getPage(this._state)
+      items: this._getPage(this._state)
     };
     this._stateSubject.next(this._state);
   }
 
-  public getPage({ pageNumber, pageSize }: PageSearchState<string>): string[] {
+
+  public changePage(state: PageState): void {
+    this._state = {
+      ...this._state,
+      pageNumber: state.pageNumber,
+      pageSize: state.pageSize,
+      items: this._getPage(state)
+    };
+    this._stateSubject.next(this._state);
+  }
+
+  private _getPage({ pageNumber, pageSize }: PageState): string[] {
   // public getPage(state: PageSearchState<string>): PageStateItems<string> {  классическая запись верхней строчки, без деструктуризации параметров.
   //   const pageNumber = state.pageNumber;
   //   const pageSize = state.pageSize;
@@ -52,4 +63,6 @@ export class SearchService{
     }
     return items
   }
+
+
 }
