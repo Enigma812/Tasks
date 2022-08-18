@@ -1,35 +1,28 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
+import { PageRequest, SearchApiService } from './search-api.service';
 
-export interface PageState {
+export interface PageSearchState<TItem> {
   pageSize: number;
   pageNumber: number;
   total: number;
-}
-
-export interface FindString {
+  items: TItem[];
   find: string;
 }
 
-export interface PageSearchState<NewString> {
-  pageSize: number;
-  pageNumber: number;
-  total: number;
-  items: NewString [];
-  find: NewString;
-}
-
-@Injectable({
-  providedIn: 'root'
-})
-export class SearchService{
+@Injectable()
+export class SearchService {
 
   public state$: Observable<PageSearchState<string>>;
-  
-  private _stateSubject: Subject<PageSearchState<string>>;
-  private _state: PageSearchState<string>
 
-  constructor() {
+  private _stateSubject: Subject<PageSearchState<string>>;
+  private _state: PageSearchState<string>;
+
+  private readonly _api: SearchApiService;
+
+
+  constructor(api: SearchApiService) {
+    this._api = api;
     this._state = {
       pageNumber: 7,
       pageSize: 5,
@@ -41,42 +34,29 @@ export class SearchService{
     this.state$ = this._stateSubject.asObservable();
     this._state = {
       ...this._state,
-      items: this._getPage(this._state)
+      items: this._api.getPage(this._state)
     };
     this._stateSubject.next(this._state);
   }
 
 
-  public changePage(state: PageState): void {
+  public changePage(request: PageRequest): void {
     this._state = {
       ...this._state,
-      pageNumber: state.pageNumber,
-      pageSize: state.pageSize,
-      items: this._getPage(state)
+      pageNumber: request.pageNumber,
+      pageSize: request.pageSize,
+      items: this._api.getPage(request)
     };
     this._stateSubject.next(this._state);
-  };
+  }
 
-  public findString(state: FindString): string {
-    return state.find
-  };
-  
-
-  private _getPage({ pageNumber, pageSize }: PageState): string[] {
-  // public getPage(state: PageSearchState<string>): PageStateItems<string> {  классическая запись верхней строчки, без деструктуризации параметров.
-  //   const pageNumber = state.pageNumber;
-  //   const pageSize = state.pageSize;
-    const items: string[] = [];
-    const firstItemOnPage = (pageNumber - 1) * pageSize;
-    for(let i = 1; i <= pageSize; i++) {
-      const item = 'Строка ' + (firstItemOnPage + i);
-      items.push(item);
+  public findString(find: string): void {
+    this._state = {
+      ...this._state,
+      find: find,
+      pageNumber: 1,
+      items: this._api.getPage(this._state)
     };
-    const find: string = '';
-    if (find === this.findString(find)) {
-      items.push(find);
-      return items
-    }
-    return items
-  };
+    this._stateSubject.next(this._state);
+  }
 }

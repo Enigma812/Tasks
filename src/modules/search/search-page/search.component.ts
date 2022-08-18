@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { map, Observable } from 'rxjs';
-import { PageState } from '../search.service';
+import { PageRequest } from '../search-api.service';
+import { PageSearchState } from '../search.service';
 import { SearchService } from '../search.service';
 
 @Component({
@@ -10,22 +11,16 @@ import { SearchService } from '../search.service';
 })
 export class SearchPageComponent {
 
-  public pageState$: Observable<PageState>;
+  public pageState$: Observable<PageSearchState<string>>;
 
   private readonly _searchStore: SearchService;
 
   constructor(searchService: SearchService) {
     this._searchStore = searchService;
-    this.pageState$ = this._searchStore.state$.pipe(
-      map((state) => ({
-        pageNumber: state.pageNumber,
-        pageSize: state.pageSize,
-        total: state.total
-      }))
-    );
+    this.pageState$ = this._searchStore.state$;
   }
 
-  public pageChange(pageState: PageState): void {
-    this._searchStore.changePage(pageState);
+  public pageChange(request: PageRequest): void {
+    this._searchStore.changePage(request);
   }
 }

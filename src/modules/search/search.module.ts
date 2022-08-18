@@ -7,6 +7,8 @@ import { PagingComponent } from './paging/paging.component';
 import { ListComponent } from './list/list.component';
 import { FindComponent } from './find/find.component';
 import { FormsModule } from '@angular/forms';
+import { SearchService } from './search.service';
+import { SearchApiService } from './search-api.service';
 
 
 @NgModule({
@@ -20,6 +22,10 @@ import { FormsModule } from '@angular/forms';
     PagingComponent,
     ListComponent,
     FindComponent
+  ],
+  providers: [
+    SearchService,
+    SearchApiService
   ]
 })
 export class SearchModule { }
