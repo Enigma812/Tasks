@@ -6,6 +6,11 @@ export interface PageRequest {
   find?: string;
 }
 
+export interface PageResponse<TItem> {
+  total: number;
+  items: TItem[]
+}
+
 @Injectable()
 export class SearchApiService {
 
@@ -20,16 +25,22 @@ export class SearchApiService {
     };
   }
 
-  public getPage({ pageNumber, pageSize, find }: PageRequest): string[] {
+  public getPage({ pageNumber, pageSize, find }: PageRequest): PageResponse<string> {
     // public getPage(state: PageSearchState<string>): PageStateItems<string> {  классическая запись верхней строчки, без деструктуризации параметров.
     //   const pageNumber = state.pageNumber;
     //   const pageSize = state.pageSize;
     const firstItemOnPage = (pageNumber - 1) * pageSize;
     if (find !== undefined) {
       const found = this._db.filter((item) => item.includes(find));
-      return found.slice(firstItemOnPage, firstItemOnPage + pageSize);
+      return {
+        total: found.length,
+        items: found.slice(firstItemOnPage, firstItemOnPage + pageSize)
+      }
     }
-    return this._db.slice(firstItemOnPage, firstItemOnPage + pageSize);
+    return {
+      total: this._db.length,
+      items: this._db.slice(firstItemOnPage, firstItemOnPage + pageSize)
+    };
   };
 }
 
