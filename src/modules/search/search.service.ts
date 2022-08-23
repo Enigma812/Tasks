@@ -51,6 +51,9 @@ export class SearchService {
       pageNumber: request.pageNumber,
       pageSize: request.pageSize,
       find: this._state.find
+      // find: request.find !== undefined
+      //   ? request.find
+      //   : this._state.find
     });
     this._state = {
       ...this._state,

@@ -1,6 +1,4 @@
-import { Component } from '@angular/core';
-import { map, Observable } from 'rxjs';
-import { SearchService } from '../search.service';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-list',
@@ -9,15 +7,11 @@ import { SearchService } from '../search.service';
 })
 export class ListComponent {
 
-  public items$: Observable<string[]>;
+  @Input()
+  public items: string[];
 
-  private readonly _searchStore: SearchService;
-
-  constructor(searchService: SearchService) { 
-    this._searchStore = searchService;
-    this.items$ = this._searchStore.state$.pipe(
-      map((state) => state.items)
-    ); 
+  constructor() {
+    this.items = [];
   }
 
 }

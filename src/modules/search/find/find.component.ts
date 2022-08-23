@@ -1,5 +1,4 @@
-import { Component } from '@angular/core';
-import { SearchService } from '../search.service';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 
 @Component({
@@ -9,17 +8,19 @@ import { SearchService } from '../search.service';
 })
 export class FindComponent {
 
+  @Input()
   public inputText: string;
 
-  private readonly _searchStore: SearchService;
+  @Output()
+  public find: EventEmitter<string>;
 
 
-  constructor(searchService: SearchService) {
-    this._searchStore = searchService;
+  constructor() {
     this.inputText = '';
+    this.find = new EventEmitter<string>();
   }
 
-  public stringFind(): void {
-    this._searchStore.findString(this.inputText);
+  public onStringFind(): void {
+    this.find.emit(this.inputText);
   }
 }

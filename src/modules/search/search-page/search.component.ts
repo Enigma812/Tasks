@@ -23,4 +23,17 @@ export class SearchPageComponent {
   public pageChange(request: PageRequest): void {
     this._searchStore.changePage(request);
   }
+
+  public onFind(findString: string): void {
+    this._searchStore.findString(findString);
+  }
+
+  public onClear(): void {
+    this._searchStore.findString('');
+    // this._searchStore.changePage({  более грамоздский спобос
+    //   pageNumber: 1,
+    //   pageSize: pageSize,
+    //   find: ''
+    // })
+  }
 }

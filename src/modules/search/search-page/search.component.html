@@ -1,11 +1,19 @@
-<section>
-    <app-find></app-find>
-    <app-list></app-list>
+<section *ngIf="(pageState$ | async) as state">
+    <div class="search__input">
+        <app-find
+            [inputText]="state.find"
+            (find)="onFind($event)"
+        ></app-find>
+        <button
+            (click)="onClear()"
+        >X</button>
+    </div>
+    <app-list 
+        [items]="state.items"></app-list>
     <app-paging
-        *ngIf="(pageState$ | async) as page"
-        [pageNumber]="page.pageNumber"
-        [pageSize]="page.pageSize"
-        [total]="page.total"
+        [pageNumber]="state.pageNumber"
+        [pageSize]="state.pageSize"
+        [total]="state.total"
         (pageChanged)="pageChange($event)"
     ></app-paging>
 </section>
