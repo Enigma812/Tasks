@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { map, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 import { PageRequest } from '../search-api.service';
 import { PageSearchState } from '../search.service';
 import { SearchService } from '../search.service';
@@ -35,5 +35,9 @@ export class SearchPageComponent {
     //   pageSize: pageSize,
     //   find: ''
     // })
+  }
+
+  public onAdd(addString: string): void {
+    this._searchStore.addString(addString);
   }
 }

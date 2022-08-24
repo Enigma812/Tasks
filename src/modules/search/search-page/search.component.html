@@ -8,6 +8,9 @@
             (click)="onClear()"
         >X</button>
     </div>
+    <app-input 
+        (add)="onAdd($event)"
+    ></app-input>
     <app-list 
         [items]="state.items"></app-list>
     <app-paging

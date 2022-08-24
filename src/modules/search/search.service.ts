@@ -8,6 +8,7 @@ export interface PageSearchState<TItem> {
   total: number;
   items: TItem[];
   find: string;
+  add: string;
 }
 
 @Injectable()
@@ -28,7 +29,8 @@ export class SearchService {
       pageNumber: 7,
       pageSize: 5,
       total: 0,
-      items: []
+      items: [],
+      add: ''
     };
     this._stateSubject = new BehaviorSubject<PageSearchState<string>>(this._state);
     this.state$ = this._stateSubject.asObservable();
@@ -76,6 +78,21 @@ export class SearchService {
       find: find,
       pageNumber: 1,
       items: response.items,
+      total: response.total
+    };
+    this._stateSubject.next(this._state);
+  }
+
+  public addString(add: string): void {
+    const response = this._api.getPage({
+      pageNumber: this._state.pageNumber,
+      pageSize: this._state.pageSize,
+      add: add
+    });
+    this._state = {
+      ...this._state,
+      add: add,
+      items: response.items.concat(add),
       total: response.total
     };
     this._stateSubject.next(this._state);

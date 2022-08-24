@@ -9,6 +9,7 @@ import { FindComponent } from './find/find.component';
 import { FormsModule } from '@angular/forms';
 import { SearchService } from './search.service';
 import { SearchApiService } from './search-api.service';
+import { InputComponent } from './input/input.component';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { SearchApiService } from './search-api.service';
     SearchPageComponent,
     PagingComponent,
     ListComponent,
-    FindComponent
+    FindComponent,
+    InputComponent
   ],
   providers: [
     SearchService,
