@@ -4,7 +4,6 @@ export interface PageRequest {
   pageNumber: number;
   pageSize: number;
   find?: string;
-  add?: string;
 }
 
 export interface PageResponse<TItem> {
@@ -26,7 +25,7 @@ export class SearchApiService {
     };
   }
 
-  public getPage({ pageNumber, pageSize, find, add }: PageRequest): PageResponse<string> {
+  public getPage({ pageNumber, pageSize, find }: PageRequest): PageResponse<string> {
     // public getPage(state: PageSearchState<string>): PageStateItems<string> {  классическая запись верхней строчки, без деструктуризации параметров.
     //   const pageNumber = state.pageNumber;
     //   const pageSize = state.pageSize;
@@ -38,17 +37,17 @@ export class SearchApiService {
         items: found.slice(firstItemOnPage, firstItemOnPage + pageSize)
       }
     }
-    // if (add !== undefined) {
-    //   const append = this._db.concat(add);
-    //   return {
-    //     total: append.length,
-    //     items: append.slice(firstItemOnPage, firstItemOnPage + pageSize)
-    //   }
-    // }
     return {
       total: this._db.length,
       items: this._db.slice(firstItemOnPage, firstItemOnPage + pageSize)
     };
   };
+
+  public addItem(item: string): number {
+    if (item !== undefined) {
+      this._db = this._db.concat(item);
+    }
+    return this._db.length;
+  }
 }
 

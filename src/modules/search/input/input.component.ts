@@ -19,6 +19,6 @@ export class InputComponent {
 
   public onStringAdd(): void {
     this.add.emit(this.inputText);
+    this.inputText = '';
   }
-
 }
