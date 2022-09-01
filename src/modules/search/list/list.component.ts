@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { Item } from '../models/item';
 
 @Component({
   selector: 'app-list',
@@ -8,7 +9,7 @@ import { Component, Input } from '@angular/core';
 export class ListComponent {
 
   @Input()
-  public items: string[];
+  public items: Item[];
 
   constructor() {
     this.items = [];

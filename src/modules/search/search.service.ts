@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
+import { Item } from './models/item';
 import { PageRequest, SearchApiService } from './search-api.service';
 
 export interface PageSearchState<TItem> {
@@ -13,10 +14,10 @@ export interface PageSearchState<TItem> {
 @Injectable()
 export class SearchService {
 
-  public state$: Observable<PageSearchState<string>>;
+  public state$: Observable<PageSearchState<Item>>;
 
-  private _stateSubject: Subject<PageSearchState<string>>;
-  private _state: PageSearchState<string>;
+  private _stateSubject: Subject<PageSearchState<Item>>;
+  private _state: PageSearchState<Item>;
 
   private readonly _api: SearchApiService;
 
@@ -30,7 +31,7 @@ export class SearchService {
       total: 0,
       items: []
     };
-    this._stateSubject = new BehaviorSubject<PageSearchState<string>>(this._state);
+    this._stateSubject = new BehaviorSubject<PageSearchState<Item>>(this._state);
     this.state$ = this._stateSubject.asObservable();
     const response =  this._api.getPage({
       pageNumber: this._state.pageNumber,

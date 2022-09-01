@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Item } from '../models/item';
 import { PageRequest } from '../search-api.service';
 import { PageSearchState } from '../search.service';
 import { SearchService } from '../search.service';
@@ -11,7 +12,7 @@ import { SearchService } from '../search.service';
 })
 export class SearchPageComponent {
 
-  public pageState$: Observable<PageSearchState<string>>;
+  public pageState$: Observable<PageSearchState<Item>>;
 
   private readonly _searchStore: SearchService;
 

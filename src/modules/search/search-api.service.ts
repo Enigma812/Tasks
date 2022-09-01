@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Item } from './models/item';
 
 export interface PageRequest {
   pageNumber: number;
@@ -14,24 +15,27 @@ export interface PageResponse<TItem> {
 @Injectable()
 export class SearchApiService {
 
-  private _db: string[];
+  private _db: Item[];
 
   constructor() {
     const total: number = 73;
     this._db = [];
     for (let i = 1; i <= total; i++) {
-      const item = 'Строка ' + i;
-      this._db.push(item);
+      const text = 'Строка ' + i;
+      this._db.push({
+        id: i,
+        text: text
+      });
     };
   }
 
-  public getPage({ pageNumber, pageSize, find }: PageRequest): PageResponse<string> {
+  public getPage({ pageNumber, pageSize, find }: PageRequest): PageResponse<Item> {
     // public getPage(state: PageSearchState<string>): PageStateItems<string> {  классическая запись верхней строчки, без деструктуризации параметров.
     //   const pageNumber = state.pageNumber;
     //   const pageSize = state.pageSize;
     const firstItemOnPage = (pageNumber - 1) * pageSize;
     if (find !== undefined) {
-      const found = this._db.filter((item) => item.includes(find));
+      const found = this._db.filter((item) => item.text.includes(find));
       return {
         total: found.length,
         items: found.slice(firstItemOnPage, firstItemOnPage + pageSize)
@@ -43,9 +47,12 @@ export class SearchApiService {
     };
   };
 
-  public addItem(item: string): number {
-    if (item !== undefined) {
-      this._db = this._db.concat(item);
+  public addItem(text: string): number {
+    if (text !== undefined) {
+      this._db = this._db.concat({
+        id: this._db.length,
+        text: text
+      });
     }
     return this._db.length;
   }
