@@ -12,7 +12,9 @@
         (add)="onAdd($event)"
     ></app-input>
     <app-list 
-        [items]="state.items"></app-list>
+        [items]="state.items"
+        (delete)="onDelete($event)">
+    </app-list>
     <app-paging
         [pageNumber]="state.pageNumber"
         [pageSize]="state.pageSize"

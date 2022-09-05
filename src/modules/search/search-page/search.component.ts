@@ -41,4 +41,8 @@ export class SearchPageComponent {
   public onAdd(addString: string): void {
     this._searchStore.addString(addString);
   }
+
+  public onDelete(item: Item): void {
+    this._searchStore.deleteItem(item);
+  }
 }

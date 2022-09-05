@@ -99,4 +99,19 @@ export class SearchService {
     };
     this._stateSubject.next(this._state);
   }
+
+  public deleteItem(item: Item): void {
+    this._api.deleteItem(item);
+    const response = this._api.getPage({
+      pageNumber: this._state.pageNumber,
+      pageSize: this._state.pageSize,
+      find: this._state.find
+    });
+    this._state = {
+      ...this._state,
+      items: response.items,
+      total: response.total
+    };
+    this._stateSubject.next(this._state);
+  }
 }

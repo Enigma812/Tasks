@@ -1,7 +1,8 @@
 <section>
-    <ul>
-        <li
-          *ngFor="let item of items"
-        >{{ item.text }}</li>
-    </ul>
+  <ul>
+    <li *ngFor="let item of items">
+      <span>{{ item.text }}</span>
+      <button (click)="onDelete(item)">x</button>
+    </li>
+  </ul>
 </section>

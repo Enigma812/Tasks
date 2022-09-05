@@ -56,5 +56,14 @@ export class SearchApiService {
     }
     return this._db.length;
   }
+
+  public deleteItem(item: Item): void {
+    if (item !== undefined) {
+      // this._db = this._db.filter((value) => value !== item); сравнение, которое лучше не использовать для объектов
+      this._db = this._db.filter((value) => value.id !== item.id);
+    }
+  }
+
+  
 }
 
