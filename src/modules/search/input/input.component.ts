@@ -12,13 +12,16 @@ export class InputComponent {
   @Output()
   public add: EventEmitter<string>;
 
-  constructor() { 
+  constructor() {
     this.inputText = '';
     this.add = new EventEmitter<string>();
   }
 
   public onStringAdd(): void {
-    this.add.emit(this.inputText);
-    this.inputText = '';
+    if (this.inputText !== '')
+    {
+      this.add.emit(this.inputText);
+      this.inputText = '';
+    };
   }
 }
