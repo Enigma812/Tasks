@@ -13,7 +13,8 @@
     ></app-input>
     <app-list 
         [items]="state.items"
-        (delete)="onDelete($event)">
+        (delete)="onDelete($event)"
+        (saveEdit)="onSave($event)">
     </app-list>
     <app-paging
         [pageNumber]="state.pageNumber"

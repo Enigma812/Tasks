@@ -64,6 +64,12 @@ export class SearchApiService {
     }
   }
 
-  
+  public editItem(editItem: Item): void {
+    if (editItem !== undefined) {
+      const found = this._db.find((value) => value.id === editItem.id);
+      if (found !== undefined) {
+        found.text = editItem.text;
+      }
+    }
+  }
 }
-

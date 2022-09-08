@@ -1,8 +1,13 @@
-<section>
+<section> 
+  <div *ngIf="isShown">
+    <input [(ngModel)]="textEdit"/>
+    <button (click)="onSave()">Сохранить</button>
+  </div>
   <ul>
     <li *ngFor="let item of items">
       <span>{{ item.text }}</span>
       <button (click)="onDelete(item)">x</button>
+      <button (click)="onEdit(item)">Изменить</button>
     </li>
   </ul>
 </section>

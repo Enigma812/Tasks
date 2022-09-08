@@ -114,4 +114,9 @@ export class SearchService {
     };
     this._stateSubject.next(this._state);
   }
+
+  public editItem(editItem: Item): void {
+    this._api.editItem(editItem);
+    this._stateSubject.next(this._state);
+  }
 }

@@ -13,13 +13,14 @@ import { SearchService } from '../search.service';
 export class SearchPageComponent {
 
   public pageState$: Observable<PageSearchState<Item>>;
-
   private readonly _searchStore: SearchService;
+
 
   constructor(searchService: SearchService) {
     this._searchStore = searchService;
     this.pageState$ = this._searchStore.state$;
   }
+
 
   public pageChange(request: PageRequest): void {
     this._searchStore.changePage(request);
@@ -44,5 +45,9 @@ export class SearchPageComponent {
 
   public onDelete(item: Item): void {
     this._searchStore.deleteItem(item);
+  }
+
+  public onSave(editItem: Item): void {
+    this._searchStore.editItem(editItem);
   }
 }
