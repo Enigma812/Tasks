@@ -48,28 +48,26 @@ export class SearchApiService {
   };
 
   public addItem(text: string): number {
-    if (text !== undefined) {
-      this._db = this._db.concat({
-        id: this._db.length,
-        text: text
-      });
-    }
+    this._db = this._db.concat({
+      id: this._db.length + 1,
+      text: text
+    });
     return this._db.length;
   }
 
   public deleteItem(item: Item): void {
-    if (item !== undefined) {
-      // this._db = this._db.filter((value) => value !== item); сравнение, которое лучше не использовать для объектов
-      this._db = this._db.filter((value) => value.id !== item.id);
-    }
+    // this._db = this._db.filter((value) => value !== item); сравнение, которое лучше не использовать для объектов
+    this._db = this._db.filter((value) => value.id !== item.id);
   }
 
   public editItem(editItem: Item): void {
-    if (editItem !== undefined) {
-      const found = this._db.find((value) => value.id === editItem.id);
-      if (found !== undefined) {
-        found.text = editItem.text;
-      }
+    // const found = this._db.find((value) => value.id === editItem.id); как вариант, но это мутация элемента массива
+    // if (found !== undefined) {
+    //   found.text = editItem.text;
+    // }
+    const foundIndex = this._db.findIndex((value) => value.id === editItem.id);
+    if (foundIndex !== -1) {
+      this._db[foundIndex] = editItem;
     }
   }
 }

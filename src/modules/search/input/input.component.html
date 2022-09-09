@@ -1,6 +1,10 @@
 <section>
     <div class="input">
-        <input class="input__string" placeholder="введите строку" [(ngModel)]="inputText"/>
+        <input class="input__string" 
+            [ngClass]="{'input__string--invalid': invalid}" 
+            placeholder="введите строку" 
+            [(ngModel)]="inputText"
+            (ngModelChange)="onChange()"/>
         <button class="input__button" (click)="onStringAdd()">Добавить</button>
     </div>
 </section>

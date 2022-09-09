@@ -33,7 +33,7 @@ export class SearchService {
     };
     this._stateSubject = new BehaviorSubject<PageSearchState<Item>>(this._state);
     this.state$ = this._stateSubject.asObservable();
-    const response =  this._api.getPage({
+    const response = this._api.getPage({
       pageNumber: this._state.pageNumber,
       pageSize: this._state.pageSize,
       find: this._state.find
@@ -48,7 +48,7 @@ export class SearchService {
 
 
   public changePage(request: PageRequest): void {
-    const response =  this._api.getPage({
+    const response = this._api.getPage({
       pageNumber: request.pageNumber,
       pageSize: request.pageSize,
       find: this._state.find
@@ -67,7 +67,7 @@ export class SearchService {
   }
 
   public findString(find: string): void {
-    const response =  this._api.getPage({
+    const response = this._api.getPage({
       pageNumber: 1,
       pageSize: this._state.pageSize,
       find: find
@@ -117,6 +117,16 @@ export class SearchService {
 
   public editItem(editItem: Item): void {
     this._api.editItem(editItem);
+    const response = this._api.getPage({
+      pageNumber: this._state.pageNumber,
+      pageSize: this._state.pageSize,
+      find: this._state.find
+    });
+    this._state = {
+      ...this._state,
+      items: response.items,
+      total: response.total
+    };
     this._stateSubject.next(this._state);
   }
 }
