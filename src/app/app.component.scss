@@ -1,7 +1,7 @@
 .toolbar {
+    height: 60px;
     display: flex;
     align-items: center;
-    gap: 500px;
     background-color: rgb(189, 106, 23);
 
     &__home {
@@ -9,9 +9,9 @@
     }
 
     &__header {
-        height: 60px;
         display: flex;
-        align-items: center;
+        justify-content: center;
+        flex-grow: 1;
         margin: 0;
         font-size: 40px;
         text-transform: uppercase;
