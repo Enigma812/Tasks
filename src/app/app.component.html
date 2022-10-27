@@ -14,25 +14,31 @@
         </div>
     </header>
 
-    <div class="list">
-        <nav class="list__nav">
+    <div class="menu">
+        <div class="menu__icon">
+            <img src="../assets/icons/Hamburger_icon.svg" width="30px" height="30px" alt="menu" />
+        </div>
+        <div class="menu__tasks">Задачи</div>
+    </div>
+    <section class="body">
+        <nav class="body__nav">
             <!-- <a href="/task1">Задача 1</a> -->
-            <a class="list__nav__link" [routerLink]="['task1']" routerLinkActive="list__nav__link--active">Задача 1</a>
-            <a class="list__nav__link" [routerLink]="['task3']" routerLinkActive="list__nav__link--active">Задача 3</a>
-            <a class="list__nav__link" [routerLink]="['task4']" routerLinkActive="list__nav__link--active">Задача 4</a>
-            <a class="list__nav__link" [routerLink]="['task5']" routerLinkActive="list__nav__link--active">Задача 5</a>
-            <a class="list__nav__link" [routerLink]="['task6']" routerLinkActive="list__nav__link--active">Задача 6</a>
-            <a class="list__nav__link" [routerLink]="['task7']" routerLinkActive="list__nav__link--active">Задача 7</a>
-            <a class="list__nav__link" [routerLink]="['task10']" routerLinkActive="list__nav__link--active">Задача 10</a>
-            <a class="list__nav__link" [routerLink]="['task12']" routerLinkActive="list__nav__link--active">Задача 12</a>
-            <a class="list__nav__link" [routerLink]="['task26']" routerLinkActive="list__nav__link--active">Задача 26</a>
-            <a class="list__nav__link" [routerLink]="['paging']" routerLinkActive="list__nav__link--active">Пайджинг</a>
-            <a class="list__nav__link" [routerLink]="['search']" routerLinkActive="list__nav__link--active">Поиск</a>
+            <a class="body__nav__link" [routerLink]="['task1']" routerLinkActive="body__nav__link--active">Задача 1</a>
+            <a class="body__nav__link" [routerLink]="['task3']" routerLinkActive="body__nav__link--active">Задача 3</a>
+            <a class="body__nav__link" [routerLink]="['task4']" routerLinkActive="body__nav__link--active">Задача 4</a>
+            <a class="body__nav__link" [routerLink]="['task5']" routerLinkActive="body__nav__link--active">Задача 5</a>
+            <a class="body__nav__link" [routerLink]="['task6']" routerLinkActive="body__nav__link--active">Задача 6</a>
+            <a class="body__nav__link" [routerLink]="['task7']" routerLinkActive="body__nav__link--active">Задача 7</a>
+            <a class="body__nav__link" [routerLink]="['task10']" routerLinkActive="body__nav__link--active">Задача 10</a>
+            <a class="body__nav__link" [routerLink]="['task12']" routerLinkActive="body__nav__link--active">Задача 12</a>
+            <a class="body__nav__link" [routerLink]="['task26']" routerLinkActive="body__nav__link--active">Задача 26</a>
+            <a class="body__nav__link" [routerLink]="['paging']" routerLinkActive="body__nav__link--active">Пайджинг</a>
+            <a class="body__nav__link" [routerLink]="['search']" routerLinkActive="body__nav__link--active">Поиск</a>
         </nav>
-        <main class="list__page">
+        <main class="body__main">
             <router-outlet></router-outlet>
         </main>
 
         <!-- <app-task1></app-task1> -->
-    </div>
+    </section>
 </section>
