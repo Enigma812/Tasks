@@ -16,34 +16,34 @@
 
     <div class="menu">
         <div class="menu__icon">
-            <img (click)="onActive()" src="../assets/icons/Hamburger_icon.svg" width="30px" height="30px" alt="menu" />
+            <img (click)="toggleMenu()" src="../assets/icons/Hamburger_icon.svg" width="30px" height="30px" alt="menu" />
         </div>
         <div class="menu__tasks">Задачи</div>
     </div>
     <section class="body">
-        <nav [ngClass]="{navActive:isVisibly}" class="body__nav">
+        <nav [ngClass]="{navActive:isShown}" class="body__nav">
             <!-- <a href="/task1">Задача 1</a> -->
-            <a (click)="onInactive()"
+            <a (click)="toggleMenu()"
                 class="body__nav__link" [routerLink]="['task1']" routerLinkActive="body__nav__link--active">Задача 1</a>
-            <a (click)="onInactive()"
+            <a (click)="toggleMenu()"
                 class="body__nav__link" [routerLink]="['task3']" routerLinkActive="body__nav__link--active">Задача 3</a>
-            <a (click)="onInactive()"
+            <a (click)="toggleMenu()"
                 class="body__nav__link" [routerLink]="['task4']" routerLinkActive="body__nav__link--active">Задача 4</a>
-            <a (click)="onInactive()"
+            <a (click)="toggleMenu()"
                 class="body__nav__link" [routerLink]="['task5']" routerLinkActive="body__nav__link--active">Задача 5</a>
-            <a (click)="onInactive()"
+            <a (click)="toggleMenu()"
                 class="body__nav__link" [routerLink]="['task6']" routerLinkActive="body__nav__link--active">Задача 6</a>
-            <a (click)="onInactive()"
+            <a (click)="toggleMenu()"
                 class="body__nav__link" [routerLink]="['task7']" routerLinkActive="body__nav__link--active">Задача 7</a>
-            <a (click)="onInactive()"
+            <a (click)="toggleMenu()"
                 class="body__nav__link" [routerLink]="['task10']" routerLinkActive="body__nav__link--active">Задача 10</a>
-            <a (click)="onInactive()"
+            <a (click)="toggleMenu()"
                 class="body__nav__link" [routerLink]="['task12']" routerLinkActive="body__nav__link--active">Задача 12</a>
-            <a (click)="onInactive()"
+            <a (click)="toggleMenu()"
                 class="body__nav__link" [routerLink]="['task26']" routerLinkActive="body__nav__link--active">Задача 26</a>
-            <a (click)="onInactive()"
+            <a (click)="toggleMenu()"
                 class="body__nav__link" [routerLink]="['paging']" routerLinkActive="body__nav__link--active">Пайджинг</a>
-            <a (click)="onInactive()"
+            <a (click)="toggleMenu()"
                 class="body__nav__link" [routerLink]="['search']" routerLinkActive="body__nav__link--active">Поиск</a>
         </nav>
         <main class="body__main">

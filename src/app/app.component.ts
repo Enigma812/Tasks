@@ -9,17 +9,16 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
 
-  public isVisibly = false;
+  public isShown = false;
 
 
-  public onActive(): void {
-    this.isVisibly = true;
+  public toggleMenu(): void {
+    if (this.isShown === false) {
+      this.isShown = true
+    } else {
+      this.isShown = false
+    };
   }
-
-  public onInactive(): void {
-    this.isVisibly = false;
-  }
-
 }
 
 
