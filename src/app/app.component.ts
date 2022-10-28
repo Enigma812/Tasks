@@ -7,5 +7,19 @@ import { Component } from '@angular/core';
     './app.component.scss'
   ]
 })
-export class AppComponent {}
+export class AppComponent {
+
+  public isVisibly = false;
+
+
+  public onActive(): void {
+    this.isVisibly = true;
+  }
+
+  public onInactive(): void {
+    this.isVisibly = false;
+  }
+
+}
+
 

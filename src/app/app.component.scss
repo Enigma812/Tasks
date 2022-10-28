@@ -65,6 +65,33 @@
 
     &__nav {
         display: none;
+        width: 120px;
+        flex-direction: column;
+        align-items: flex-start;
+        background-color: rgb(168, 145, 79);
+
+        &__link {
+            width: 88px;
+            padding: 5px 15px;
+            border-width: 1px;
+            border-style: solid;
+            border-color: rgb(73, 41, 8);
+            text-decoration: none;
+            color: white;
+            font-size: 15px;
+            font-weight: bolder;
+            text-transform: uppercase;
+        }
+
+        &__link {
+            &:hover {
+                background-color: rgb(189, 106, 23);
+            }
+
+            &--active {
+                background-color: rgb(73, 41, 8);
+            }
+        }
     }
 
     &__main {
@@ -75,6 +102,10 @@
 
 }
 
+.navActive {
+    display: flex;
+    position: absolute;
+}
 
 
 @media (min-width: 500px) {
@@ -98,34 +129,5 @@
     
     .body__nav {
         display: flex;
-        width: 120px;
-        flex-direction: column;
-        align-items: flex-start;
-        border-style: none;
-        border-right: 10px solid rgb(73, 41, 8);
-        background-color: rgb(168, 145, 79);
-
-        &__link {
-            width: 89px;
-            padding: 5px 15px;
-            border-width: 1px 0 1px 0;
-            border-style: solid;
-            border-color: rgb(73, 41, 8);
-            text-decoration: none;
-            color: white;
-            font-size: 15px;
-            font-weight: bolder;
-            text-transform: uppercase;
-        }
-
-        &__link {
-            &:hover {
-                background-color: rgb(189, 106, 23);
-            }
-
-            &--active {
-                background-color: rgb(73, 41, 8);
-            }
-        }
     }
 }
